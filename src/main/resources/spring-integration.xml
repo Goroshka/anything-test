@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:file="http://www.springframework.org/schema/integration/file"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:int="http://www.springframework.org/schema/integration"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns:p="http://www.springframework.org/schema/p"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans
+       http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd
+       http://www.springframework.org/schema/integration
+       http://www.springframework.org/schema/integration/spring-integration.xsd
+       http://www.springframework.org/schema/integration/file
+       http://www.springframework.org/schema/integration/file/spring-integration-file.xsd">
+
+    <context:component-scan base-package="com.koldakov.springintegration"/>
+
+    <bean id="inputScanner" class="org.springframework.integration.file.DefaultDirectoryScanner"/>
+
+    <file:inbound-channel-adapter id="inputFilesInboundAdapter"
+                                  directory="C:\tmp\input"
+                                  channel="handlingChannel"
+                                  scanner="inputScanner">
+        <int:poller max-messages-per-poll="10" time-unit="SECONDS" fixed-rate="1"/>
+    </file:inbound-channel-adapter>
+
+    <int:chain input-channel="handlingChannel">
+        <int:filter discard-channel="nullChannel" >
+            <bean class="org.springframework.integration.file.filters.ExpressionFileListFilter">
+                <constructor-arg value="1 == 1"/>
+            </bean>
+        </int:filter>
+
+        <int:transformer>
+            <bean class="org.springframework.integration.file.FileWritingMessageHandler">
+                <constructor-arg value="C:\tmp\moved\txt"/>
+                <property name="deleteSourceFiles" value="true"/>
+            </bean>
+        </int:transformer>
+    </int:chain>
+</beans>

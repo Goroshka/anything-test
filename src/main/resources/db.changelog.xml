@@ -1,0 +1,31 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.1.xsd
+    http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd">
+
+    <changeSet id="creation" author="koldaan">
+        <createTable tableName="test_kold">
+            <column name="id" type="int">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="col1" type="varchar(2)"/>
+        </createTable>
+        <createTable tableName="test_kold_child">
+            <column name="par_id" type="int">
+                <constraints foreignKeyName="test_kold_fk" referencedTableName="test_kold" referencedColumnNames="id"/>
+            </column>
+            <column name="child_col1" type="varchar(1)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+
+    <changeSet id="release" author="koldaan">
+        <addColumn tableName="test_kold">
+            <column name="col2" type="varchar(3)"/>
+        </addColumn>
+    </changeSet>
+
+</databaseChangeLog>
