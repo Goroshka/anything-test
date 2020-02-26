@@ -1,4 +1,4 @@
-package com.koldakov.algorithms.runningmedian;
+package com.koldakov.algorithms.hackerrank;
 
 import com.koldakov.datastructures.MyLinkedList;
 

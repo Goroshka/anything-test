@@ -9,7 +9,7 @@ public class MyBinaryTree<T> {
 
     private TreeElement<T> rootElement;
 
-    int height() {
+    public int height() {
         return height(rootElement);
     }
 
@@ -24,7 +24,7 @@ public class MyBinaryTree<T> {
         return result;
     }
 
-    void insert(T value, Comparator<T> comparator) {
+    public void insert(T value, Comparator<T> comparator) {
         rootElement = insert(rootElement, value, comparator);
     }
 
@@ -39,6 +39,37 @@ public class MyBinaryTree<T> {
             }
         }
         return treeElement;
+    }
+
+    public String levelOrder() {
+        if (rootElement == null) {
+            return "Tree is empty";
+        }
+
+        StringBuilder result = new StringBuilder();
+        result.append("Tree is: [");
+
+        int height = height();
+        // since height is defined as maximum number of edges from node to leaf
+        // we have to iterate one moe time to get last level leafs
+        for (int i = 1; i <= height + 1; i++) {
+            result.append(levelOrder(rootElement, i));
+        }
+
+        return result.delete(result.length() - 1, result.length()).append("]").toString();
+    }
+
+    private static <T> String levelOrder(TreeElement<T> treeElement, int level) {
+        if (treeElement == null) {
+            return "";
+        }
+
+        if (level == 1) {
+            return treeElement.value + " ";
+        } else {
+            return levelOrder(treeElement.left, level - 1) +
+                    levelOrder(treeElement.right, level - 1);
+        }
     }
 
     private static class TreeElement<T> {

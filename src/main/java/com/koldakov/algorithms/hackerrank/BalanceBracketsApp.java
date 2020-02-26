@@ -1,4 +1,4 @@
-package com.koldakov.algorithms.brackets;
+package com.koldakov.algorithms.hackerrank;
 
 import java.util.*;
 

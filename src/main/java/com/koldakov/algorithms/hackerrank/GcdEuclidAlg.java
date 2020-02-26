@@ -1,8 +1,8 @@
-package com.koldakov.algorithms.gcd;
+package com.koldakov.algorithms.hackerrank;
 
 import java.util.Scanner;
 
-public class EuclidAlg {
+public class GcdEuclidAlg {
 
     public static void main(String[] args) {
         System.out.println("Enter two numbers:");

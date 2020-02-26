@@ -1,4 +1,4 @@
-package com.koldakov.algorithms.matcher;
+package com.koldakov.algorithms.hackerrank;
 
 import java.util.Scanner;
 
