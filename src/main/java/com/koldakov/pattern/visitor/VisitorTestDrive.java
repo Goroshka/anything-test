@@ -1,4 +1,4 @@
-package com.koldakov.visitorpattern;
+package com.koldakov.pattern.visitor;
 
 public class VisitorTestDrive {
 

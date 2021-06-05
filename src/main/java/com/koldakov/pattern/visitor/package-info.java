@@ -8,4 +8,4 @@
  * Handling of objects is achieved by implementing method which accepts visitor
  *
  */
-package com.koldakov.visitorpattern;
+package com.koldakov.pattern.visitor;

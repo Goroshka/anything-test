@@ -1,4 +1,4 @@
-package com.koldakov.visitorpattern;
+package com.koldakov.pattern.visitor;
 
 import java.util.ArrayList;
 import java.util.List;

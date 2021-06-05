@@ -1,6 +1,6 @@
-package com.koldakov.visitorpattern;
+package com.koldakov.pattern.visitor;
 
-public class Orange implements Fruit {
+public class Apple implements Fruit {
 
     @Override
     public void accept(Visitor v) {
