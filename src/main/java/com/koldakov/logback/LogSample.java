@@ -6,10 +6,14 @@ import org.slf4j.LoggerFactory;
 
 public class LogSample {
 
-    public static void main(String[] args) {
-        System.setProperty("logback.configurationFile", "logback-sample.xml");
+    private static final Logger log;
 
-        Logger log = LoggerFactory.getLogger(LogSample.class);
+    static {
+        System.setProperty("logback.configurationFile", "logback-sample.xml");
+        log = LoggerFactory.getLogger(LogSample.class);
+    }
+
+    public static void main(String[] args) {
         log.info("Example log from {}", LogSample.class.getSimpleName());
 
         ch.qos.logback.classic.Logger parentLogger = (ch.qos.logback.classic.Logger) LoggerFactory.getLogger("com.koldakov.logback");

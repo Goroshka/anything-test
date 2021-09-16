@@ -104,6 +104,20 @@ public class MyLinkedList<T> {
         }
     }
 
+    public void reverse() {
+        ListElement<T> prev = null;
+        ListElement<T> current = firstElement;
+        ListElement<T> next = null;
+
+        while (current != null) {
+            next = current.nextElement;
+            current.nextElement = prev;
+            prev = current;
+            current = next;
+        }
+        firstElement = prev;
+    }
+
     @Override
     public String toString() {
         if (firstElement == null) {
